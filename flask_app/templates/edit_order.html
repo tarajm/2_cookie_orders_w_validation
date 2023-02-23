@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <title>Edit Cookie</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Change Order</h1>
+
+        <form action="/cookies/edit/{{order.id}}" method="POST">
+        {% with messages = get_flashed_messages() %}     <!-- declare a variable called messages -->
+            {% if messages %}                            <!-- check if there are any messages -->
+                {% for message in messages %}            <!-- loop through the messages -->
+                    <p class="error">{{message}}</p>                   <!-- display each message in a paragraph tag -->
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" name="name" class="form-control" id="name"  value="{{order.name}}">
+            </div>
+            <div class="form-group">
+                <label for="cookie_type">Cookie Type</label>
+                <input type="text" name="cookie_type" class="form-control" id="cookie_type" placeholder="ex. thin mints" value="{{order.cookie_type}}">
+            </div>
+            <div class="form-group">
+                <label for="num_of_boxes">Number of Boxes</label>
+                <input type="number" name="num_of_boxes" class="form-control" id="num_of_boxes" value="{{order.num_of_boxes}}">
+            </div>
+            <input type="hidden" name="id" value="{{order.id}}" >
+            <input type="submit" class="form-control" value="Submit"  >
+
+
+            <a href="/" type="submit" class="btn btn-dark" >Wait! Don't Edit Order!!</a>
+
+            </div>
+        </form>
+    </div>
+    
+</body>
+</html>
